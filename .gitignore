@@ -1,0 +1,15 @@
+# These lines are suggested according to the svn:ignore property
+# Feel free to enable them by uncommenting them
+syntax: glob
+*.log
+*.orig
+*.rej
+*~
+*.pyc
+*.pyo
+*.swp
+/build
+
+syntax: regexp
+.*\#.*\#$
+.*\#.*$
