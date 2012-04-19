@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
 # Сокращение строк и ссылок
 
-def shorten(url, max_len=70):
+def shorten(s, max_len=70):
+    assert(isinstance(max_len, int))
     if max_len<30:
         max_len = 30 # меньше нет смысла - и неверно работает
-    url_len = len(url)
-    if url_len>max_len:
+    s_len = len(s)
+    if s_len>max_len:
         # заменяем на многоточие, по возможности вторую треть адреса
         # сколько убрать
-        to_remove = url_len-max_len+3
+        to_remove = s_len-max_len+3
         # точка замены
-        l = url_len/3*2 + url_len/6
+        l = s_len/3*2 + s_len/6
         # минимальное число символов в конце
         min_end = 15
-        visible_end = url_len-min_end
+        visible_end = s_len-min_end
         # корректируем
         if l+to_remove/2 > visible_end:
             l -= (l+to_remove/2 - visible_end)
         
-        return url[:l-to_remove/2]+'...'+url[l+to_remove/2:]
-    return url
+        return s[:l-to_remove/2]+'...'+s[l+to_remove/2:]
+    return s
 
 def shorten_span(s, max_len=40):
     """ сократить, полное имя показать в тайтле """
