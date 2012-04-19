@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # Сокращение строк и ссылок
 
-def shorten_url(url, max_len=70):
-    if max_len<30: max_len = 30 # меньше нет смысла - и неверно работает
+def shorten(url, max_len=70):
+    if max_len<30:
+        max_len = 30 # меньше нет смысла - и неверно работает
     url_len = len(url)
     if url_len>max_len:
         # заменяем на многоточие, по возможности вторую треть адреса
@@ -20,14 +21,14 @@ def shorten_url(url, max_len=70):
         return url[:l-to_remove/2]+'...'+url[l+to_remove/2:]
     return url
 
-def shorten(s, max_len=40):
+def shorten_span(s, max_len=40):
     """ сократить, полное имя показать в тайтле """
-    return '<span title="%s">%s</span>' % (s, shorten_url(s, max_len))
+    return '<span title="%s">%s</span>' % (s, shorten(s, max_len))
 
 def shorten_link(s, max_len=40):
     """ ссылка: сократить, полное имя показать в тайтле """
     href = s if s.startswith(("http://", "https://")) else "http://"+s
-    return '<a href="%s" title="%s">%s</a>' % (href, s, shorten_url(s, max_len))
+    return '<a href="%s" title="%s">%s</a>' % (href, s, shorten(s, max_len))
 
 def shorten_noend(s, max_len=40):
     """ сократить, концовку не показывать """
